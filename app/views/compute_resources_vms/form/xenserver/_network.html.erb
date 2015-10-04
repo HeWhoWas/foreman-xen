@@ -1,0 +1,6 @@
+<% networks = compute_resource.networks %>
+
+<%= select_f f, :network, networks, :name, :name, { },
+             :class => "col-md-2 xen_network without_select2",
+             :label => _('Network')
+%>

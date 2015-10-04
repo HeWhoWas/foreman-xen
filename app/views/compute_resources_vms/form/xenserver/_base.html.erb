@@ -47,24 +47,7 @@
   <% end %>
 </div>
 
-<!-- Storage -->
-<div class="children_fields xenserver-raw" id="xenserver-storage" style="<%= hide_raw %>">
-  <%= field_set_tag 'Storage', :id => 'storage_volumes', :title => _('Storage') do -%>
-      <%= f.fields_for :VBDs do |i| %>
-          <%= render 'compute_resources_vms/form/volume', :f => i, :compute_resource => compute_resource, :new => new, :attribute_map => attribute_map %>
-      <% end -%>
-  <% end -%>
-</div>
-
-<!-- Network -->
-<div class="children_fields" id="xenserver-network" style="<%= hide_raw %>">
-  <%= field_set_tag 'Network interfaces', :id => 'network_interfaces', :title => _('Networks') do -%>
-      <%= f.fields_for :VIFs do |i| %>
-          <%= render 'compute_resources_vms/form/network', :f => i, :compute_resource => compute_resource, :new => new, :attribute_map => attribute_map %>
-      <% end -%>
-  <% end -%>
-</div>
-
+<!-- Hypervisors -->
 <div class="children_fields" id="xenserver-hosts" style="<%= hide_raw %>">
   <%= field_set_tag 'Start on server', :id => 'xen_hypervisors', :title => _('Start on server') do -%>
       <%= render 'compute_resources_vms/form/hypervisors', :f => f, :compute_resource => compute_resource, :new => new, :attribute_map => attribute_map %>

@@ -63,8 +63,12 @@ module ForemanXen
       client.networks.new attr
     end
 
-    def new_volume(attr={})
-      client.storage_repositories.new attr
+    def new_interface(attr={})
+      Fog::Compute::XenServer::VIF.new(attr)
+    end
+
+    def new_volume(attr = {})
+      Fog::Compute::XenServer::VBD.new(attr)
     end
 
     def storage_pools

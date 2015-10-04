@@ -28,10 +28,13 @@ module ForemanXen
       begin
         # extend fog xen server and image models.
         require 'fog/xenserver/models/compute/server'
+        require 'fog/xenserver/models/compute/vbd'
         require File.expand_path('../../../app/models/concerns/fog_extensions/xenserver/server', __FILE__)
+        require File.expand_path('../../../app/models/concerns/fog_extensions/xenserver/vbd', __FILE__)
         require File.expand_path('../../../app/models/concerns/foreman_xen/host_helper_extensions', __FILE__)
 
         Fog::Compute::XenServer::Server.send(:include, ::FogExtensions::Xenserver::Server)
+        Fog::Compute::XenServer::VBD.send(:include, ::FogExtensions::Xenserver::VBD)
         ::HostsHelper.send(:include, ForemanXen::HostHelperExtensions)
       rescue => e
         puts "Foreman-Xen: skipping engine hook (#{e.to_s})"

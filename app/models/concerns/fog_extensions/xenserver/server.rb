@@ -6,7 +6,7 @@ module FogExtensions
       include ActionView::Helpers::NumberHelper
 
       attr_accessor :start
-	  attr_accessor :memory_min, :memory_max, :custom_template_name, :builtin_template_name, :hypervisor_host
+	    attr_accessor :memory_min, :memory_max, :custom_template_name, :builtin_template_name, :hypervisor_host
 
       def to_s
         name
@@ -41,7 +41,15 @@ module FogExtensions
       end
 
       def interfaces
-        vifs
+        if not __vifs.nil?
+          vifs
+        end
+      end
+
+      def volumes
+        if not __vbds.nil?
+          vbds
+        end
       end
 
       def select_nic(fog_nics, nic)
