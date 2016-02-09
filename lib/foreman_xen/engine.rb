@@ -2,6 +2,7 @@ require 'fast_gettext'
 require 'gettext_i18n_rails'
 require 'fog/xenserver'
 
+
 module ForemanXen
   # Inherit from the Rails module of the parent app (Foreman), not the plugin.
   # Thus, inherits from ::Rails::Engine and not from Rails::Engine
@@ -25,10 +26,13 @@ module ForemanXen
       begin
         # extend fog xen server and image models.
         require 'fog/xenserver/models/compute/server'
+        require 'fog/xenserver/models/compute/vdi'
         require File.expand_path('../../../app/models/concerns/fog_extensions/xenserver/server', __FILE__)
+        require File.expand_path('../../../app/models/concerns/fog_extensions/xenserver/vdi', __FILE__)
         require File.expand_path('../../../app/models/concerns/foreman_xen/host_helper_extensions', __FILE__)
 
         Fog::Compute::XenServer::Server.send(:include, ::FogExtensions::Xenserver::Server)
+        Fog::Compute::XenServer::VDI.send(:include, ::FogExtensions::Xenserver::VDI)
         ::HostsHelper.send(:include, ForemanXen::HostHelperExtensions)
       rescue => e
         Rails.logger.warn "Foreman-Xen: skipping engine hook (#{e})"

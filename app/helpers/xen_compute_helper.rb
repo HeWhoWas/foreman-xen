@@ -96,4 +96,9 @@ module XenComputeHelper
       :memory_max                => nil,
       :power_on                  => nil }
   end
+
+  def xenserver_storage_repositories(compute)
+    compute.storage_pools.map { |item| [item[:display_name], item[:uuid]] }
+  end
+
 end

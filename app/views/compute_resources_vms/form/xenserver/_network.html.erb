@@ -1,0 +1,8 @@
+<%
+   nat = compute_resource.networks
+   attribute_map = compute_attribute_map(params, compute_resource, @host)
+-%>
+<%= selectable_f f, :print, nat.map(&:name),
+                     { :include_blank => nat.any? ? false : _("No networks"),
+                       :selected      => attribute_map[:network_selected] },
+                     { :class => "span2 xen xenserver_network", :label => _("Network") } %>

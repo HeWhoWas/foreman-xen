@@ -46,6 +46,22 @@ module FogExtensions
         vifs
       end
 
+      def volumes
+        begin
+          retval = []
+          vbds.each do | vbd |
+            if vbd.vdis
+              vbd.vdis.each do | vdi |
+                retval << vdi
+              end
+            end
+          end
+          retval
+        rescue
+          []
+        end
+      end
+
       def select_nic(fog_nics, nic)
         fog_nics[0]
       end

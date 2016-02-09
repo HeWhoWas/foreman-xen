@@ -1,0 +1,13 @@
+<%
+   attribute_map = compute_attribute_map(params, compute_resource, @host)
+   storage_repositories = xenserver_storage_repositories(compute_resource)
+%>
+
+<%= selectable_f f, :uuid, storage_repositories,
+                 {:include_blank => storage_repositories.any? ? false : _("No Storage Repositories") },
+                 :class => "form-control span5",
+                 :label => _("Storage Repository") %>
+
+<%= text_f f, :size_gb,
+           :class       => "col-md-2",
+           :label => _("Size (GB)") %>
