@@ -3,6 +3,8 @@ module FogExtensions
     module VDI
       extend ActiveSupport::Concern
 
+      attr_accessor :sr_uuid
+
       def size_gb
         (virtual_size.to_i / 1073741824) * 1.0
       end
@@ -10,6 +12,7 @@ module FogExtensions
       def size_gb=(val)
         virtual_size = (val.to_i) * 1073741824
       end
+
 
     end
   end

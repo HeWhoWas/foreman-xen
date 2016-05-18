@@ -46,6 +46,10 @@ module FogExtensions
         vifs
       end
 
+      def new_interface
+
+      end
+
       def volumes
         begin
           retval = []

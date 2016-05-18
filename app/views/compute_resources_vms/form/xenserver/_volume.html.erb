@@ -3,8 +3,8 @@
    storage_repositories = xenserver_storage_repositories(compute_resource)
 %>
 
-<%= selectable_f f, :uuid, storage_repositories,
-                 {:include_blank => storage_repositories.any? ? false : _("No Storage Repositories") },
+<%= selectable_f f, :sr_uuid, storage_repositories,
+                 { },
                  :class => "form-control span5",
                  :label => _("Storage Repository") %>
 
