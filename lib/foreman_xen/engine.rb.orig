@@ -27,6 +27,10 @@ module ForemanXen
       begin
         # extend fog xen server and image models.
         require 'fog/compute/xen_server/models/server'
+<<<<<<< HEAD
+        require 'fog/compute/xen_server/models/vdi'
+=======
+>>>>>>> 54c2cec16464808d8fef520f367e4b90d4243f9b
         require File.expand_path('../../../app/models/concerns/fog_extensions/xenserver/server', __FILE__)
         require File.expand_path('../../../app/models/concerns/fog_extensions/xenserver/vdi', __FILE__)
         require File.expand_path('../../../app/models/concerns/foreman_xen/host_helper_extensions', __FILE__)

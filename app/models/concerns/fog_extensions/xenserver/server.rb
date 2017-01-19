@@ -12,11 +12,9 @@ module FogExtensions
         name
       end
 
-      def nics_attributes=(attrs)
-      end
+      def nics_attributes=(attrs); end
 
-      def volumes_attributes=(attrs)
-      end
+      def volumes_attributes=(attrs); end
 
       def memory
         memory_static_max.to_i
@@ -24,6 +22,10 @@ module FogExtensions
 
       def reset
         reboot
+      end
+
+      def stop
+        shutdown
       end
 
       def ready?
