@@ -73,7 +73,7 @@ module ForemanXen
     end
 
     def new_volume(attr = {})
-      Fog::Compute::XenServer::VDI.new(attr)
+      Fog::Compute::XenServer::VDI.new()
     end
 
     def storage_pools

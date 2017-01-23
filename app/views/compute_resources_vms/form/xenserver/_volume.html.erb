@@ -1,13 +1,3 @@
-<%
-   attribute_map = compute_attribute_map(params, compute_resource, @host)
-   storage_repositories = xenserver_storage_repositories(compute_resource)
-%>
+<%= selectable_f f, :sr_uuid, compute_resource.storage_pools.map { |item| [item[:display_name], item[:uuid]] }, { :selected => attribute_map[:volume_selected] }, :class => "span2", :label => _("Storage Repository") %>
 
-<%= selectable_f f, :sr_uuid, storage_repositories,
-                 { },
-                 :class => "form-control span5",
-                 :label => _("Storage Repository") %>
-
-<%= text_f f, :size_gb,
-           :class       => "col-md-2",
-           :label => _("Size (GB)") %>
+<%= text_f f, :physical_size, :class => "input-mini", :label => _("Size (GB)"), :value => attribute_map[:volume_size] %>
