@@ -1,0 +1,22 @@
+<%- new = f.object
+    attribute_map = compute_attribute_map(params, compute_resource, new) -%>
+<script>
+    populateNetworks = function(results){
+        $('#host_compute_attributes_VIFs_print').children().remove();
+        for (var i = 0; i < results.length; i++) {
+            result = results[i];
+            $('#host_compute_attributes_VIFs_print').append('<option id=' + result['name'] + '>' + result['name'] + '</option>');
+        }
+    }
+</script>
+
+<% if new_host %>
+    <%= select_f f, :network, compute_resource.networks, :uuid, :name, { },
+                 :class => "col-md-3 xenserver_network",
+                 :label => _('Network'), :label_size => "col-md-3",
+                 :input_group_btn => link_to_function(icon_text('refresh'), "refreshCache('networks', #{compute_resource.id}, populateNetworks)", :class => 'btn btn-primary',
+                                                      :title => _('Refresh the available networks.'))
+    %>
+<% else %>
+    <%= text_f f, :network, :class => 'col-md-3 vmware_network', :label => _("Network"), :label_size => "col-md-3" %>
+<% end %>

@@ -48,6 +48,10 @@ module FogExtensions
         vifs
       end
 
+      def volumes
+        vbds
+      end
+
       def select_nic(fog_nics, nic)
         fog_nics[0]
       end

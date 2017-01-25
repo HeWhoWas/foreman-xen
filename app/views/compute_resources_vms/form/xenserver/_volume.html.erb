@@ -8,21 +8,20 @@
     }
 </script>
 
-<div class="fields">
-
-  <%= selectable_f(
-          f,
-          :sr_uuid,
-          storage_pool_map(compute_resource),
-          { :selected => attribute_map[:volume_selected] },
-          {
-              :class => "span2",
+<% if new_host %>
+    <%= selectable_f(
+            f,
+            :sr,
+            storage_pool_map(compute_resource),
+            { },
+            { :class => "span2",
               :label => _("Storage Repository"),
               :input_group_btn => link_to_function(icon_text('refresh'), "refreshCache('storage_pools', #{compute_resource.id})", :class => 'btn btn-primary',
-                                                   :title => _('Refresh available storage repositories')),
-          }
-      )
-  %>
+                                                   :title => _('Refresh available storage repositories')) }
+        )
+    %>
+<% else %>
+    <%= text_f f, :sr, :class => "span2", :label => _("Storage Repository") %>
+<% end %>
 
-  <%= text_f f, :physical_size, :class => "input-mini", :label => _("Size (GB)"), :value => attribute_map[:volume_size] %>
-</div>
+<%= text_f f, number_to_human_size(:virtual_size), :class => "input-mini", :label => _("Size (GB)") %>

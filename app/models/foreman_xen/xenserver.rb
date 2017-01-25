@@ -78,8 +78,13 @@ module ForemanXen
       client.networks.new attr
     end
 
+    def new_interface(attr = {})
+      # fog compatibility
+      client.vifs.new attr
+    end
+
     def new_volume(attr = {})
-      client.storage_repositories.new attr
+      client.vdis.new attr
     end
 
     def storage_pools
@@ -123,7 +128,7 @@ module ForemanXen
     end
 
     def interfaces
-      client.interfaces
+      networks
     rescue
       []
     end
@@ -386,6 +391,9 @@ module ForemanXen
       client.hosts.first
     end
 
+    def volumes
+      vbds
+    end
     protected
 
     def client
